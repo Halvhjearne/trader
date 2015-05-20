@@ -17,23 +17,33 @@ _tradercount = round(random 4)+6;
 _mindist = 4000;
 //marker text for traders
 _markertext = "HS Blackmarket";
+//texture on the flag (has to be 200x200), "" to disable
+_flagtexture = "trader\dkflagpole.jpg";
+//texture on the sign, "" to disable
+_sigtexture = "trader\trader.jpg";
 
 //if _staticCoords are set here, there will be a trader at that exact position and direction,
 //_blacklistedAreas is where random blackmarkets cannot spawn
 switch(toLower worldName)do{
 	case "altis":{
 		_staticCoords = [
-//			[traderposition,direction,createmarker,props[classname,position,direction]]
-//			"full" array
-//			[[0,0,0],0,true,[["classname1",[1,1,1],1],["classname2",[2,2,2],2]]]
-//			minimal array
-//			[[0,0,0],0]
+/*
+			[traderposition,direction,createmarker,props[classname,position,direction]]
+			//"full" array
+			[[0,0,0],0,true,[["classname1",[1,1,1],1],["classname2",[2,2,2],2]]]
+			//minimal array
+			[[0,0,0],0]
+*/
 			[[18459.1,14259.2,0.00141716],340.199], //trader by mine
 			[[13319,14523.9,0.00134587],143.067], //trader by stavros
 			[[6193.02,16828.7,0.00118256],1.52142] //trader by kore
 		];
-											/*[position,area]*/
-		_blacklistedAreas = [[[18459.1,14259.2,0.00141716],1000],[[12570.8,14320.2,4.67927],1000],[[6193.02,16828.7,0.00118256],1000]];
+		_blacklistedAreas = [
+							/*[position,area]*/
+			[[18459.1,14259.2,0.00141716],1000],
+			[[12570.8,14320.2,4.67927],1000],
+			[[6193.02,16828.7,0.00118256],1000]
+		];
 		//distance to search for trader positions
 		_spawnarea = 12500;
 	};
@@ -281,9 +291,9 @@ if(isServer) then{
 				case "O_CargoNet_01_ammo_F":{clearBackpackCargoGlobal _obj;clearItemCargoGlobal _obj;clearMagazineCargoGlobal _obj;clearWeaponCargoGlobal _obj;};
 				case "Land_Campfire_F":{_obj = createVehicle ["Land_ClutterCutter_medium_F", _pos, [], 0, "CAN_COLLIDE"];_obj setPos _pos;};
 				case "Land_Ground_sheet_blue_F":{_obj = createVehicle ["Land_ClutterCutter_large_F", _pos, [], 0, "CAN_COLLIDE"];_obj setPos _pos;};
-				case "Flag_ARMEX_F":{_obj setFlagTexture "trader\dkflagpole.jpg";};
+				case "Flag_ARMEX_F":{if(_flagtexture != "")then{_obj setFlagTexture _flagtexture;};};
 				case "Land_HelipadEmpty_F":{_obj = createVehicle ["Land_ClutterCutter_large_F", _pos, [], 0, "CAN_COLLIDE"];_obj setPos _pos;};
-				case "SignAd_Sponsor_F":{_obj setObjectTextureGlobal [0, "trader\trader.jpg"];};//apply diffrent texture to the sign at some point
+				case "SignAd_Sponsor_F":{if(_sigtexture != "")then{_obj setObjectTextureGlobal [0,_sigtexture];};};
 			};
 		}forEach _objects;
 		diag_log "[HSBlackmarket]: HSBlackmarket Creating a Marker";
