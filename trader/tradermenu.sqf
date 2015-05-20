@@ -944,7 +944,6 @@ HS_confirmtrade = {
 					deleteVehicle _WH;
 				};
 				{
-				
 					_itemWorth = _x select 1;
 					_itemTax = _x select 2;
 					_tax = _itemWorth * (EPOCH_taxRate + _itemTax);
