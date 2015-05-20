@@ -27,7 +27,6 @@ switch(_type)do{
 			_obj = _x select 9;
 			
 			if(owner _obj == owner _player)then{
-				_vehSlot=_obj getVariable["VEHICLE_SLOT","ABORT"];
 		//damage price reductions, the price is divded by this number
 				_damagepricereduction = switch(true)do{
 							//damaged over 90%
@@ -40,8 +39,9 @@ switch(_type)do{
 					case ((damage _obj) > 0.25):{1.5};
 					default {1};
 				};
-				_isNOTrental = if(_obj getVariable ["HSHALFPRICE",0] == 0)then{true}else{false};
-				if(_vehSlot !="ABORT" && _isNOTrental)then{
+				_vehSlot=_obj getVariable["VEHICLE_SLOT","ABORT"];
+				_isrental = _obj getVariable ["HSHALFPRICE",0];
+				if(_vehSlot !="ABORT" && _isrental != 1)then{
 					_message = _message + format["%1 is OK to sell, dam: %2 pricemod: %3 || ",_x select 4,damage _obj,_damagepricereduction];
 					removeFromRemainsCollector[_obj];
 					deleteVehicle _obj;
@@ -54,11 +54,17 @@ switch(_type)do{
 					_cost = ((_x select 1)/_damagepricereduction);
 					_return = _return + _cost;
 				}else{
-					_message = _message + format[" || %1 is OK to sell (1/2 price), dam: %2 pricemod: %3",_x select 4,damage _obj,_damagepricereduction];
-					removeFromRemainsCollector[_obj];
-					_obj call HALV_PurgeObject;
-					_cost = ((_x select 1)/_damagepricereduction);
-					_return = _return + _cost;
+					if(_isrental == 1)then{
+						_message = _message + format[" || %1 'Rental' is OK to sell, dam: %2 pricemod: %3",_x select 4,damage _obj,_damagepricereduction];
+						removeFromRemainsCollector[_obj];
+						_obj setVariable["VEHICLE_SLOT","ABORT",true];
+						_obj setVariable["HSHALFPRICE",0,true];
+						_obj call HALV_PurgeObject;
+						_cost = ((_x select 1)/_damagepricereduction);
+						_return = _return + _cost;
+					}else{
+						_message = _message + format[" || - ERROR Attempt to sell %1 twice -",_x select 4,_player];
+					};
 				};
 			}else{
 				_message = _message + format[" || %1 Not yours (get in as driver to sell)",_x select 4];
@@ -170,7 +176,6 @@ switch(_type)do{
 			HalvPV_player_message = ["titleText", ["[Warning]:\nThis vehicle will disappear on server restart!", "PLAIN DOWN"]];
 			owner(_this select 2) publicVariableClient "HalvPV_player_message";
 		}];
-		_veh setVariable["VEHICLE_SLOT","ABORT",true];
 		_veh setVariable["HSHALFPRICE",1,true];
 		_itemWorth = ((_arr select 1)/2);
 		_itemTax = (_arr select 2);
