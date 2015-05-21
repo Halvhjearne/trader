@@ -81,7 +81,7 @@ switch(_type)do{
 		if(count EPOCH_VehicleSlots <=EPOCH_storedVehicleCount)exitWith{
 			_message = format["Could not buy a %1, too many vehicles on the map!",_arr select 4];
 		};
-		_spot = nearestObjects [_player, ["Land_HelipadCivil_F","Land_HelipadCircle_F","Land_HelipadEmpty_F","Land_HelipadSquare_F","Land_JumpTarget_F"], 50];
+		_spot = nearestObjects [_player, ["Land_HelipadCivil_F","Land_HelipadCircle_F","Land_HelipadEmpty_F","Land_HelipadSquare_F","Land_JumpTarget_F"],100];
 		if(count _spot < 1)then{
 			_canbewwater = if((_arr select 0) isKindOf "Ship")then{1}else{0};
 			_spot = [getPos _player,5,75,0,_canbewwater,2000,0] call BIS_fnc_findSafePos;
