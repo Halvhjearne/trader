@@ -101,8 +101,8 @@ switch(_type)do{
 		clearBackpackCargoGlobal _veh;
 		clearItemCargoGlobal _veh;
 		_veh lock true;
-		_lockOwner=getPlayerUID _plyr;
-		_plyrGroup=_plyr getVariable["GROUP",""];
+		_lockOwner=getPlayerUID _player;
+		_plyrGroup=_player getVariable["GROUP",""];
 		if(_plyrGroup !="")then{
 			_lockOwner=_plyrGroup;
 		};
@@ -139,7 +139,7 @@ switch(_type)do{
 		diag_log format["[HSBlackmarket] %1 | %2",_player,_arr];
 	};
 	case 3:{
-		_spot = nearestObjects [_player, ["Land_HelipadCivil_F","Land_HelipadCircle_F","Land_HelipadEmpty_F","Land_HelipadSquare_F","Land_JumpTarget_F"], 50];
+		_spot = nearestObjects [_player, ["Land_HelipadCivil_F","Land_HelipadCircle_F","Land_HelipadEmpty_F","Land_HelipadSquare_F","Land_JumpTarget_F"],100];
 		if(count _spot < 1)then{
 			_canbewwater = if((_arr select 0) isKindOf "Ship")then{1}else{0};
 			_spot = [getPos _player,5,75,0,_canbewwater,2000,0] call BIS_fnc_findSafePos;
