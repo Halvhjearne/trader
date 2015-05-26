@@ -1,3 +1,8 @@
+/*
+	a3 epoch trader
+	HS_weaponsrestriction.sqf
+	by Halv & Suppe
+*/
 #include "settings.sqf";
 
 _this setVehicleAmmo _setVehicleAmmo;
