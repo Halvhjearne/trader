@@ -81,6 +81,7 @@ if(isServer) then{
 	"HSPV_traderrequest" addPublicVariableEventHandler {(_this select 1) call HS_playertraderequest};
 	diag_log "[HSBlackmarket] Server Loading functions";
 	HS_playertraderequest = compileFinal preprocessFileLineNumbers "trader\HS_playertraderequest.sqf";
+	HS_weaponsrestriction = compileFinal preprocessFileLineNumbers "trader\HS_weaponsrestriction.sqf";
 	HALV_PurgeObject = compileFinal preprocessFileLineNumbers "trader\HALV_PurgeObject.sqf";
 	private ["_coords","_roadlist","_firstroad","_statdir"];
 /////////////////////////////////////////////////////////////

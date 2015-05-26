@@ -579,6 +579,10 @@
 				<English>Submachine Guns</English>
 				<Russian>Пистолет-пулеметы</Russian>
 			</Key>
+			<Key ID="STR_HS_LAUNCHERS">
+				<Original>Launchers</Original>
+				<English>Launchers</English>
+			</Key>
 			<Key ID="STR_HS_OTHER">
 				<Original>Other</Original>
 				<English>Other</English>
@@ -589,10 +593,18 @@
 				<English>Ammo / Bullets</English>
 				<Russian>Боезапас / Патроны</Russian>
 			</Key>
+			<Key ID="STR_HS_AMMOROCKETS">
+				<Original>Rockets / Missiles</Original>
+				<English>Rockets / Missiles</English>
+			</Key>
 			<Key ID="STR_HS_BUILDINGSUPP">
 				<Original>Building Supplies</Original>
 				<English>Building Supplies</English>
 				<Russian>Стройматериалы</Russian>
+			</Key>
+			<Key ID="STR_HS_FOOD">
+				<Original>Food</Original>
+				<English>Food</English>
 			</Key>
 			<Key ID="STR_HS_BIPODS">
 				<Original>Bipods</Original>
