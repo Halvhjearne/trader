@@ -188,8 +188,8 @@ HS_trader_menu = {
 					_index1 = _ctrl tvAdd [[_mainindex],_id select 0];
 					_ctrl tvSetPicture [[_mainindex,_index1],_id select 1];
 					_ctrl tvsetValue [[_mainindex,_index1],-1];
-					switch(_id select 0)do{
-						case "Air":{
+					switch(_index1)do{
+						case 0:{
 							{
 								_index2 = _ctrl tvAdd [[_mainindex,_index1],_x select 0];
 								_ctrl tvSetPicture [[_mainindex,_index1,_index2],_x select 1];
@@ -201,7 +201,7 @@ HS_trader_menu = {
 							[localize "STR_HS_OTHER","\a3\Ui_f\data\gui\Rsc\RscDisplayGarage\texturesources_ca.paa"]
 							];
 						};
-						case "Land":{
+						case 1:{
 							{
 								_index2 = _ctrl tvAdd [[_mainindex,_index1],_x select 0];
 								_ctrl tvSetPicture [[_mainindex,_index1,_index2],_x select 1];
@@ -951,7 +951,6 @@ HS_confirmtrade = {
 						};
 					};
 				};
-			
 				if(_isOK)then{
 					_itemWorth = ((HS_trader_itemlist select _x) select 1);
 					_itemTax = ((HS_trader_itemlist select _x) select 2);
