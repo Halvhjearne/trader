@@ -140,6 +140,7 @@ switch(_type)do{
 		diag_log format["[HSBlackmarket] %1 | %2",_player,_arr];
 	};
 	case 3:{
+		_epochgaypos=getArray(configFile >> "CfgEpoch" >> worldname >> "whitelistedVehiclePos" >> (_arr select 0));
 		_spot = nearestObjects [_player, ["Land_HelipadCivil_F","Land_HelipadCircle_F","Land_HelipadEmpty_F","Land_HelipadSquare_F","Land_JumpTarget_F"],100];
 		if(count _spot < 1)then{
 			_canbewwater = if((_arr select 0) isKindOf "Ship")then{1}else{0};
@@ -147,7 +148,9 @@ switch(_type)do{
 		}else{
 			_spot = getPosATL (_spot select 0);
 		};
-		_veh = createVehicle[(_arr select 0),_spot,[],0,"NONE"];
+		_veh = createVehicle[(_arr select 0),(_epochgaypos select 0),[],0,"NONE"];
+		diag_log str['HSDEBUG:',_veh,getPos _veh];
+		_veh setPos _spot;
 		_veh call EPOCH_server_setVToken;
 		addToRemainsCollector[_veh];
 		_veh disableTIEquipment true;
