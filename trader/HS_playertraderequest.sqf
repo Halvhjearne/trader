@@ -88,11 +88,14 @@ switch(_type)do{
 		}else{
 			_spot = getPosATL (_spot select 0);
 		};
+		_epochgaypos=getArray(configFile >> "CfgEpoch" >> worldname >> "whitelistedVehiclePos" >> (_arr select 0));
 		_slot=EPOCH_VehicleSlots select 0;
 		EPOCH_VehicleSlots = EPOCH_VehicleSlots - [_slot];
 		EPOCH_VehicleSlotCount = count EPOCH_VehicleSlots;
 		publicVariable "EPOCH_VehicleSlotCount";
-		_veh = createVehicle[(_arr select 0),_spot,[],0,"NONE"];
+		_veh = createVehicle[(_arr select 0),((_epochgaypos select 0)select 0),[],0,"NONE"];
+		diag_log str['HSDEBUG:',_veh,getPos _veh];
+		_veh setPos _spot;
 		_veh call EPOCH_server_setVToken;
 		addToRemainsCollector[_veh];
 		_veh disableTIEquipment true;
@@ -148,7 +151,7 @@ switch(_type)do{
 		}else{
 			_spot = getPosATL (_spot select 0);
 		};
-		_veh = createVehicle[(_arr select 0),(_epochgaypos select 0),[],0,"NONE"];
+		_veh = createVehicle[(_arr select 0),((_epochgaypos select 0)select 0),[],0,"NONE"];
 		diag_log str['HSDEBUG:',_veh,getPos _veh];
 		_veh setPos _spot;
 		_veh call EPOCH_server_setVToken;
