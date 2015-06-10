@@ -375,7 +375,19 @@ if(isServer) then{
 if(hasInterface)then{
 	diag_log "[HSBlackmarket]: Client waiting for Trader ...";
 	waitUntil {sleep 1;(!isNil "HSPV_HSBlackmarket")};
-	{_x addAction ["<img size='1.5'image='\a3\Ui_f\data\gui\Rsc\RscDisplayArcadeMap\icon_layout_ca.paa'/> <t color='#0096ff'>HS Trader Menu</t>","trader\dummy.sqf",_x, -9, true, true, "", "_this distance _target < 5"];}forEach HSPV_HSBlackmarket;
+	{
+		_x addAction ["<img size='1.5'image='\a3\Ui_f\data\gui\Rsc\RscDisplayArcadeMap\icon_layout_ca.paa'/> <t color='#0096ff'>HS Trader Menu</t>",
+		{
+			/*
+			systemChat "WARNING:";
+			systemChat "This trader is NOT finished yet ...";
+			systemChat "... you might loose items and / or crypto trading here!";
+			*/
+			HS_SWITCH = false;
+			createDialog "HS_trader_dialog";
+			call HS_trader_menu;
+		},_x, -9, true, true, "", "_this distance _target < 5"];
+	}forEach HSPV_HSBlackmarket;
 	HSPV_HSBlackmarket = nil;
 	call compile preprocessFileLineNumbers "trader\tradermenu.sqf";
 	diag_log "[HSBlackmarket]: Client Done ...";

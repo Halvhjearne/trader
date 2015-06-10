@@ -7,6 +7,7 @@
 _this enableSimulation false;
 {_this removeAllMPEventHandlers _x;}count ["mpkilled","mphit","mprespawn"];
 {_this removeAllEventHandlers _x;}count ["FiredNear","HandleDamage","Killed","Fired","GetOut","GetIn","Local"];
+removeFromRemainsCollector[_this];
 deleteVehicle _this;
 deleteGroup (group _this);
 _this = nil;
