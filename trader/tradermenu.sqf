@@ -21,7 +21,7 @@ HS_fnc_returnnameandpic = {
 			_libtxt = (gettext (configFile >> _type >> _item >> "Library" >> "libTextDesc"));
 			_BIStype = _item call BIS_fnc_itemType;
 		};
-	}count ["cfgweapons","cfgmagazines","cfgvehicles","cfgglasses"];
+	}forEach ["cfgweapons","cfgmagazines","cfgvehicles","cfgglasses"];
 	_return = [_type,_txt,_libtxt,_pic,_BIStype select 0,_BIStype select 1];
 	_return
 };
