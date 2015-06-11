@@ -89,7 +89,7 @@ HS_trader_menu = {
 					case ((damage _obj) > 0.25):{1.5};
 					default {1};
 				};
-				_price = (_price / _damagepricereduction);
+				_price = round(_price/_damagepricereduction);
 				HS_PLAYER_itemlist pushBack [_x,_price,getNumber(_config >> _x >> "tax"),_info select 0,_info select 1,_info select 2,_info select 3,_info select 4,_info select 5,_obj]
 			};
 		}forEach _HS_nearvehiclestypes;

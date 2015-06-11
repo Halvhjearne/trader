@@ -41,7 +41,7 @@ switch(_type)do{
 				};
 				_vehSlot=_obj getVariable["VEHICLE_SLOT","ABORT"];
 				_isrental = _obj getVariable ["HSHALFPRICE",0];
-				if(_vehSlot !="ABORT" && _isrental != 1)then{
+				if(_vehSlot !="ABORT" && !(_isrental in [1,2]))then{
 					_message = _message + format["%1 is OK to sell, dam: %2 pricemod: %3 || ",_x select 4,damage _obj,_damagepricereduction];
 					removeFromRemainsCollector[_obj];
 					deleteVehicle _obj;
@@ -54,7 +54,7 @@ switch(_type)do{
 					_cost = ((_x select 1)/_damagepricereduction);
 					_return = _return + _cost;
 				}else{
-					if(_isrental == 1)then{
+					if(_isrental > 0)then{
 						_message = _message + format[" || %1 'Rental' is OK to sell, dam: %2 pricemod: %3",_x select 4,damage _obj,_damagepricereduction];
 						removeFromRemainsCollector[_obj];
 						_obj setVariable["VEHICLE_SLOT","ABORT",true];
