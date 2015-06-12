@@ -1038,17 +1038,10 @@ HS_confirmtrade = {
 };
 //needs a check to only allow every 5-30sec
 HS_checkavailability = {
-	if(!isNil "HSHASPRESSEDONCE")exitWith{
-		systemChat format[localize "STR_HS_NOTALLOWEDTOSPAM",((round((diag_tickTime - HSHASPRESSEDONCE)-15))*-1)];
+	if(EPOCH_VehicleSlotCount >= 0)exitWith{
+		titleText ["Can't buy a saved vehicle, too many on the map!","PLAIN DOWN"];
 	};
-					//[item(s),player,isselling]
-	HSPV_traderrequest = [[],player,0];
-	publicVariableServer "HSPV_traderrequest";
-	[]spawn{
-		HSHASPRESSEDONCE = diag_tickTime;
-		waitUntil{sleep 1;(diag_tickTime - HSHASPRESSEDONCE > 15)};
-		HSHASPRESSEDONCE = nil;
-	};
+	titleText ["Vehicle slots available, you can buy one that saves!","PLAIN DOWN"];
 };
 
 HS_buyvehiclesaved = {
