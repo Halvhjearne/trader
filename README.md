@@ -1,5 +1,4 @@
-# trader
-new trader for epoch
+new trader for epoch by Halv & Suppe
 
 Copyright (C) 2015  Halvhjearne & Suppe
 
@@ -17,3 +16,4 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Contact : halvhjearne@gmail.com
+Contact : 
