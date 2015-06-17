@@ -1,7 +1,7 @@
 # trader
 new trader for epoch
 
-Copyright (C) <2015>  <Halvhjearne>
+Copyright (C) 2015  Halvhjearne
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
