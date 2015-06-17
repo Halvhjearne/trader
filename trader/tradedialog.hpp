@@ -2,6 +2,8 @@
 	a3 epoch trader
 	tradermenu.hpp
 	by Halv & Suppe
+	
+	Copyright (C) 2015  Halvhjearne & Suppe > README.md
 */
 // Control types
 #define CT_MAP_MAIN 101

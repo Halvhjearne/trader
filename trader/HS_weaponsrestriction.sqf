@@ -2,6 +2,8 @@
 	a3 epoch trader
 	HS_weaponsrestriction.sqf
 	by Halv & Suppe
+	
+	Copyright (C) 2015  Halvhjearne & Suppe > README.md
 */
 #include "settings.sqf";
 

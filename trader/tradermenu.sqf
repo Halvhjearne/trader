@@ -2,6 +2,8 @@
 	a3 epoch trader
 	tradermenu.sqf
 	by Halv & Suppe
+	
+	Copyright (C) 2015  Halvhjearne & Suppe > README.md
 */
 
 #include "settings.sqf";

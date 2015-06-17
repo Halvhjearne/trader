@@ -2,6 +2,8 @@
 	a3 epoch trader
 	init.sqf
 	by Halv & Suppe
+	
+	Copyright (C) 2015  Halvhjearne & Suppe > README.md
 */
 private ["_staticCoords","_blacklistedAreas","_spawnarea"];
 

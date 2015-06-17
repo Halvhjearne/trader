@@ -2,6 +2,8 @@
 	a3 epoch trader
 	HS_playertraderequest.sqf
 	by Halv & Suppe
+	
+	Copyright (C) 2015  Halvhjearne & Suppe > README.md
 */
 
 _arr = _this select 0;
