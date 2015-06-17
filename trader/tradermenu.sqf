@@ -1038,7 +1038,7 @@ HS_confirmtrade = {
 };
 //needs a check to only allow every 5-30sec
 HS_checkavailability = {
-	if(EPOCH_VehicleSlotCount <= 0)exitWith{
+	if(EPOCH_VehicleSlotCount >= 0)exitWith{
 		titleText ["Can't buy a saved vehicle, too many on the map!","PLAIN DOWN"];
 	};
 	titleText ["Vehicle slots available, you can buy one that saves!","PLAIN DOWN"];
