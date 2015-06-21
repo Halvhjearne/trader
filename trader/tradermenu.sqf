@@ -34,6 +34,7 @@ for "_i" from 0 to (count _config)-1 do {
 	_type = _config select _i;
 	if (isClass _type) then {
 		_item = configName(_type);
+//		diag_log str["DEBUG:",_item];
 		if !(_item in _blacklist)then{
 			_price = getNumber(_config >> _item >> "price");
 			_tax = getNumber(_config >> _item >> "tax");
@@ -243,19 +244,31 @@ HS_trader_menu = {
 //				diag_log format["%1",_x];
 				switch(_x select 8)do{
 					case "AssaultRifle":{
-						if((_x select 0) in ["ChainSaw","m107_EPOCH","m107Tan_EPOCH","m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F"])then{
+						if((_x select 0) in ["m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F","CUP_arifle_RPK74","CUP_arifle_MG36","CUP_arifle_MG36_camo","CUP_arifle_L86A2","CUP_glaunch_Mk13","CUP_glaunch_M79","CUP_glaunch_M32","CUP_sgun_M1014","CUP_sgun_Saiga12K","CUP_sgun_AA12","CUP_smg_MP5SD6","CUP_smg_MP5A5","CUP_smg_EVO","CUP_smg_bizon","m107_EPOCH","m107Tan_EPOCH","CUP_srifle_CZ550","CUP_srifle_CZ750","CUP_srifle_SVD_wdl_ghillie","CUP_srifle_SVD_des_ghillie_pso","CUP_srifle_ksvk","CUP_srifle_SVD","CUP_srifle_SVD_des","CUP_srifle_AWM_des","CUP_srifle_AWM_wdl","CUP_srifle_M110","CUP_srifle_DMR","CUP_srifle_M24_des","CUP_srifle_M24_wdl","CUP_srifle_M24_ghillie","CUP_srifle_M40A3","CUP_arifle_Mk20","CUP_srifle_VSSVintorez","hgun_PDW2000_F","ChainSaw","speargun_epoch","MMG_01_hex_F"])then{
 							switch (true)do{
-								case ((_x select 0) == "ChainSaw"):{
-									_index = _ctrl tvAdd [[0,6],_x select 4];
-									_path = [0,6,_index];
+								case (toLower(_x select 0) isEqualTo "hgun_pdw2000_f"):{
+									_index = _ctrl tvAdd [[0,1],_x select 4];
+									_path = [0,1,_index];
 								};
-								case ((_x select 0) in ["m107_EPOCH","m107Tan_EPOCH"]):{
+								case ((_x select 0) in ["m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F","MMG_01_hex_F","CUP_arifle_RPK74","CUP_arifle_MG36","CUP_arifle_MG36_camo","CUP_arifle_L86A2"]):{
+									_index = _ctrl tvAdd [[0,2],_x select 4];
+									_path = [0,2,_index];
+								};
+								case ((_x select 0) in ["m107_EPOCH","m107Tan_EPOCH","CUP_srifle_CZ550","CUP_srifle_CZ750","CUP_srifle_SVD_wdl_ghillie","CUP_srifle_SVD_des_ghillie_pso","CUP_srifle_ksvk","CUP_srifle_SVD","CUP_srifle_SVD_des","CUP_srifle_AWM_des","CUP_srifle_AWM_wdl","CUP_srifle_M110","CUP_srifle_DMR","CUP_srifle_M24_des","CUP_srifle_M24_wdl","CUP_srifle_M24_ghillie","CUP_srifle_M40A3","CUP_arifle_Mk20","CUP_srifle_VSSVintorez"]):{
 									_index = _ctrl tvAdd [[0,3],_x select 4];
 									_path = [0,3,_index];
 								};
-								case ((_x select 0) in ["m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F"]):{
-									_index = _ctrl tvAdd [[0,2],_x select 4];
-									_path = [0,2,_index];
+								case ((_x select 0) in ["CUP_smg_MP5SD6","CUP_smg_MP5A5","CUP_smg_EVO","CUP_smg_bizon"]):{
+									_index = _ctrl tvAdd [[0,4],_x select 4];
+									_path = [0,4,_index];
+								};
+								case ((_x select 0) in ["CUP_glaunch_Mk13","CUP_glaunch_M79","CUP_glaunch_M32"]):{
+									_index = _ctrl tvAdd [[0,5],_x select 4];
+									_path = [0,5,_index];
+								};
+								case ((_x select 0) in ["CUP_sgun_M1014","CUP_sgun_Saiga12K","CUP_sgun_AA12","speargun_epoch","ChainSaw"]):{
+									_index = _ctrl tvAdd [[0,6],_x select 4];
+									_path = [0,6,_index];
 								};
 							};
 						}else{
@@ -582,12 +595,25 @@ Halv_onlbtreeselected = {
 	_currentarray = if(HS_SWITCH)then{HS_PLAYER_itemlist}else{HS_trader_itemlist};
 	_arr = _currentarray select _value;
 	_pic = _arr select 6;
-	_send = if((toLower _pic) in ["","pictureheal","picturepapercar","picturething","picturestaticobject"]) then {
-		parseText format["<t align='center'size='0.5'>%1</t><br/><t align='center'size='0.4'>%2</t>",_arr select 4,_arr select 5]; 
-	}else{
-		parseText format["<img size='2.4' image='%1'/><br/><t align='center'size='0.5'>%2</t><br/><t align='center'size='0.4'>%3</t>",_pic,_arr select 4,_arr select 5]; 
+	_ammotxt = "";
+	if((_arr select 3) isEqualTo "cfgweapons")then{
+		_ammo = [] + getArray (configFile >> "cfgWeapons" >> (_arr select 0) >> "magazines");
+		if(count _ammo > 0)then{
+			{
+				_txt = (gettext (configFile >> "cfgmagazines" >> _x >> "displayName"));
+				_ammotxt = _ammotxt + format["<br/><t size='0.7'>%1</t>",_txt];
+			}forEach _ammo;
+		};
 	};
-	[_send,0,0 * safezoneH + safezoneY,15,0,0,8407] spawn bis_fnc_dynamicText;
+	_send = if((toLower _pic) in ["","pictureheal","picturepapercar","picturething","picturestaticobject"]) then {
+		format["<t align='center'size='0.5'>%1</t><br/><t align='center'size='0.4'>%2</t>",_arr select 4,_arr select 5]; 
+	}else{
+		format["<img size='2.4' image='%1'/><br/><t align='center'size='0.5'>%2</t><br/><t align='center'size='0.4'>%3</t>",_pic,_arr select 4,_arr select 5]; 
+	};
+	if !(_ammotxt isEqualTo "")then{
+		_send = _send + _ammotxt;
+	};
+	[parseText _send,0,0 * safezoneH + safezoneY,15,0,0,8407] spawn bis_fnc_dynamicText;
 };
 
 HS_buyorsell = {

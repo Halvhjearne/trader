@@ -6,7 +6,11 @@
 	Copyright (C) 2015  Halvhjearne & Suppe > README.md
 */
 //this is to blacklist items you do not want in the blackmarket
-_blacklist = ["srifle_DMR_03_spotter_F","13Rnd_mas_9x19_Mag","25Rnd_mas_9x21_Mag","B_mas_HMMWV_SOV_M2"];
+_blacklist = [
+"srifle_DMR_03_spotter_F","13Rnd_mas_9x19_Mag","25Rnd_mas_9x21_Mag","B_mas_HMMWV_SOV_M2","CUP_arifle_M16A4GL","CUP_arifle_ksvk_PSO3","CUP_srifle_M15_Aim",
+"CUP_optic_AN_PVS_4","CUP_optic_AN_PVS_10","CUP_optic_CWS","CUP_optic_AN_PAS_13c1","CUP_optic_AN_PAS_13c2","CUP_optic_GOSHAWK","CUP_optic_NSPU","optic_Nightstalker",
+"optic_NVS"
+];
 
 //this is how vehicles spawn, 0 = player gets menu to decide, 1 = only allow saved vehicles, 2 = only allow rentals
 _vehiclespawnmode = 0;
