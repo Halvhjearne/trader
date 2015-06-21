@@ -765,7 +765,7 @@ HS_confirmtrade = {
 			_pay = 0;
 			_isNOTOK = [];
 			{
-				diag_log format["CHECK: %1",(HS_trader_itemlist select _x)];
+//				diag_log format["CHECK: %1",(HS_trader_itemlist select _x)];
 				_isOK = false;
 				if(((HS_trader_itemlist select _x) select 3) == "cfgvehicles" && (((HS_trader_itemlist select _x) select 8) != "Backpack"))then{
 					diag_log format["%1",(HS_trader_itemlist select _x) select 4];
@@ -773,7 +773,7 @@ HS_confirmtrade = {
 				}else{
 					switch((HS_trader_itemlist select _x) select 7)do{
 						case "Weapon":{
-							diag_log format["Weapon: %1",(HS_trader_itemlist select _x) select 4];
+//							diag_log format["Weapon: %1",(HS_trader_itemlist select _x) select 4];
 							switch((HS_trader_itemlist select _x) select 8)do{
 								case "AssaultRifle":{
 									if(primaryWeapon player != "")then{
@@ -856,7 +856,7 @@ HS_confirmtrade = {
 							};
 						};
 						case "Magazine":{
-							diag_log format["Magazine: %1",(HS_trader_itemlist select _x) select 4];
+//							diag_log format["Magazine: %1",(HS_trader_itemlist select _x) select 4];
 							if (player canAdd ((HS_trader_itemlist select _x)select 0)) then {
 								player addMagazine ((HS_trader_itemlist select _x)select 0);
 								_isOK = true;
@@ -865,7 +865,7 @@ HS_confirmtrade = {
 							};
 						};
 						case "Item":{
-							diag_log format["Item: %1",(HS_trader_itemlist select _x) select 4];
+//							diag_log format["Item: %1",(HS_trader_itemlist select _x) select 4];
 							switch ((HS_trader_itemlist select _x) select 8)do{
 								case "Radio":{
 									_radios = ["EpochRadio0","EpochRadio1","EpochRadio2","EpochRadio3","EpochRadio4","EpochRadio5","EpochRadio6","EpochRadio7","EpochRadio8","EpochRadio9"];
@@ -892,7 +892,7 @@ HS_confirmtrade = {
 							};
 						};
 						case "Equipment":{
-							diag_log format["Equipment: %1",(HS_trader_itemlist select _x) select 4];
+//							diag_log format["Equipment: %1",(HS_trader_itemlist select _x) select 4];
 							switch((HS_trader_itemlist select _x) select 8)do{
 								case "Backpack":{
 									if(backpack player != "")then{
@@ -939,7 +939,7 @@ HS_confirmtrade = {
 								case "Uniform":{
 									if(uniform player != "")then{
 										systemChat localize "STR_HS_ALREADYWEARINGUNIFORM";
-										diag_log str['Uniform',((HS_trader_itemlist select _x)select 0)];
+//										diag_log str['Uniform',((HS_trader_itemlist select _x)select 0)];
 										if (player canAdd ((HS_trader_itemlist select _x)select 0)) then {
 											player addItem ((HS_trader_itemlist select _x)select 0);
 											_isOK = true;
@@ -954,7 +954,7 @@ HS_confirmtrade = {
 								case "Vest":{
 									if(vest player != "")then{
 										systemChat localize "STR_HS_ALREADYWEARINGVEST";
-										diag_log format["%1",(HS_trader_itemlist select _x)select 0];
+//										diag_log format["%1",(HS_trader_itemlist select _x)select 0];
 										if (player canAdd ((HS_trader_itemlist select _x)select 0)) then {
 											player addItem ((HS_trader_itemlist select _x)select 0);
 											_isOK = true;
@@ -969,7 +969,7 @@ HS_confirmtrade = {
 							};
 						};
 						default{
-							diag_log format["Default: %1",(HS_trader_itemlist select _x) select 4];
+//							diag_log format["Default: %1",(HS_trader_itemlist select _x) select 4];
 							if (player canAdd ((HS_trader_itemlist select _x)select 0)) then {
 								player addItem ((HS_trader_itemlist select _x)select 0);
 								_isOK = true;
@@ -985,7 +985,7 @@ HS_confirmtrade = {
 					_tax = _itemWorth * (EPOCH_taxRate + _itemTax);
 					_cost = ceil(_itemWorth + _tax);
 					_pay = _pay + _cost;
-					diag_log format["BOUGHT: %1 (%2)",(HS_trader_itemlist select _x),_pay];
+					diag_log format["BOUGHT: (%2) %1",(HS_trader_itemlist select _x),_pay];
 				};
 			}forEach HS_BUYSELLARRAY;
 			if(count _isNOTOK > 0)then{
@@ -1064,7 +1064,7 @@ HS_confirmtrade = {
 		};
 	};
 };
-//needs a check to only allow every 5-30sec
+
 HS_checkavailability = {
 	if(EPOCH_VehicleSlotCount <= 0)exitWith{
 		titleText ["Can't buy a saved vehicle, too many on the map!","PLAIN DOWN"];
