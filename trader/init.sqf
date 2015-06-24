@@ -98,11 +98,7 @@ if(isServer) then{
 		private ["_array1", "_array2", "_result"];
 		_array1 = _this select 0;
 		_array2 = _this select 1;
-		_result =
-		[
-		(((_array1 select 0) select 0) * (_array2 select 0)) + (((_array1 select 0) select 1) * (_array2 select 1)),
-		(((_array1 select 1) select 0) * (_array2 select 0)) + (((_array1 select 1) select 1) * (_array2 select 1))
-		];
+		_result = [(((_array1 select 0) select 0) * (_array2 select 0)) + (((_array1 select 0) select 1) * (_array2 select 1)),(((_array1 select 1) select 0) * (_array2 select 0)) + (((_array1 select 1) select 1) * (_array2 select 1))];
 		_result
 	};
 /////////////////////////////////////////////////////////////

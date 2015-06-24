@@ -20,7 +20,7 @@ switch(_type)do{
 		{
 			_obj = _x select 9;
 			
-			if(owner _obj == owner _player)then{
+			if((owner _obj) isEqualTo (owner _player))then{
 		//damage price reductions, the price is divded by this number
 				_damagepricereduction = switch(true)do{
 							//damaged over 90%
@@ -35,7 +35,7 @@ switch(_type)do{
 				};
 				_vehSlot=_obj getVariable["VEHICLE_SLOT","ABORT"];
 				_isrental = _obj getVariable ["HSHALFPRICE",0];
-				if(_vehSlot !="ABORT" && !(_isrental in [1,2]))then{
+				if(!(_vehSlot isEqualTo "ABORT") && !(_isrental in [1,2]))then{
 					_message = _message + format["%1 is OK to sell, dam: %2 pricemod: %3 || ",_x select 4,damage _obj,_damagepricereduction];
 					removeFromRemainsCollector[_obj];
 					deleteVehicle _obj;
@@ -100,7 +100,7 @@ switch(_type)do{
 		_veh lock true;
 		_lockOwner=getPlayerUID _player;
 		_plyrGroup=_player getVariable["GROUP",""];
-		if(_plyrGroup !="")then{
+		if !(_plyrGroup isEqualTo "")then{
 			_lockOwner=_plyrGroup;
 		};
 		_vehLockHiveKey=format["%1:%2",(call EPOCH_fn_InstanceID),_slot];
@@ -189,7 +189,7 @@ switch(_type)do{
 	};
 };
 
-if(_message != "")then{
+if !(_message isEqualTo "")then{
 	HalvPV_player_message = ["titleText", [_message, "PLAIN DOWN"]];
 	(owner _player) publicVariableClient "HalvPV_player_message";
 }else{
