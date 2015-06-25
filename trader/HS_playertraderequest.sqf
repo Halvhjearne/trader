@@ -175,7 +175,7 @@ switch(_type)do{
 		_veh call EPOCH_server_vehicleInit;
 		_veh call HS_weaponsrestriction;
 		_veh addEventHandler ["GetIn",{
-			HalvPV_player_message = ["titleText", ["[Warning]:\nThis vehicle will disappear on server restart!", "PLAIN DOWN"]];
+			HalvPV_player_message = ["titleText", ["[Warning]:\nnThis vehicle is a rental and will disappear on server restart!", "PLAIN DOWN"]];
 			owner(_this select 2) publicVariableClient "HalvPV_player_message";
 		}];
 		_veh setVariable["HSHALFPRICE",1,true];
