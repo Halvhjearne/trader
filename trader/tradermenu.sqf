@@ -592,8 +592,8 @@ Halv_onlbtreeselected = {
 	private "_value";
 	_ctrl = _this select 0;
 	_current = _this select 1;
-	_value = if((typeName _current) isEqualTo (typeName []))then{_ctrl tvValue _current}else{_ctrl lbValue _current};
-	_exit = if((typeName _current) isEqualTo (typeName []))then{if(count _current < 2)then{true}else{false};}else{false};
+	_value = if((typeName _current) isEqualTo "ARRAY")then{_ctrl tvValue _current}else{_ctrl lbValue _current};
+	_exit = if((typeName _current) isEqualTo "ARRAY")then{if(count _current < 2)then{true}else{false};}else{false};
 	if(_exit)exitWith{};
 	if(_value < 0)exitWith{};
 	_currentarray = if(HS_SWITCH)then{HS_PLAYER_itemlist}else{HS_trader_itemlist};
@@ -631,6 +631,11 @@ HS_buyorsell = {
 
 HS_confirmtrade = {
 	#include "settings.sqf";
+	if !(isNil "HS_istrading")exitWith{
+		titleText ["Already trading ...","PLAIN DOWN"];
+	};
+	HS_istrading = true;
+	closeDialog 0;
 	_spawnveh = -1;
 	if (HS_SWITCH)then{
 		_list = [];
@@ -1053,7 +1058,6 @@ HS_confirmtrade = {
 		sleep 6.2;
 		player switchMove "";
 	};
-	closeDialog 0;
 	if (_spawnveh > 0)then{
 		switch (_vehiclespawnmode)do{
 			case 0:{
@@ -1067,6 +1071,7 @@ HS_confirmtrade = {
 			};
 		};
 	};
+	HS_istrading = nil;
 };
 
 HS_checkavailability = {

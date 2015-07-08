@@ -79,12 +79,12 @@ switch(toLower worldName)do{
 
 // Server stuff...
 if(isServer) then{
-	diag_log "[HSBlackmarket] Server adding PVEvent";
-	"HSPV_traderrequest" addPublicVariableEventHandler {(_this select 1) call HS_playertraderequest};
 	diag_log "[HSBlackmarket] Server Loading functions";
 	HS_playertraderequest = compileFinal preprocessFileLineNumbers "trader\HS_playertraderequest.sqf";
 	HS_weaponsrestriction = compileFinal preprocessFileLineNumbers "trader\HS_weaponsrestriction.sqf";
 	HALV_PurgeObject = compileFinal preprocessFileLineNumbers "trader\HALV_PurgeObject.sqf";
+	diag_log "[HSBlackmarket] Server adding PVEvent";
+	"HSPV_traderrequest" addPublicVariableEventHandler {(_this select 1) call HS_playertraderequest};
 	private ["_coords","_roadlist","_firstroad","_statdir"];
 /////////////////////////////////////////////////////////////
 	/*
@@ -384,7 +384,7 @@ if(hasInterface)then{
 			HS_SWITCH = false;
 			createDialog "HS_trader_dialog";
 			call HS_trader_menu;
-		},_x, -9, true, true, "", "_this distance _target < 5"];
+		},_x, -9, true, true, "", "player distance _target < 5"];
 	}forEach HSPV_HSBlackmarket;
 	HSPV_HSBlackmarket = nil;
 	call compile preprocessFileLineNumbers "trader\tradermenu.sqf";
