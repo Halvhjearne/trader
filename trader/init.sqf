@@ -9,6 +9,8 @@ private ["_staticCoords","_blacklistedAreas","_spawnarea"];
 
 _agent = "I_G_resistanceLeader_F";
 
+_addsafezone = true;
+
 _spawnnearroad = true;
 
 _dist2roadMax = 350;
@@ -277,6 +279,7 @@ if(isServer) then{
 			]
 		]call BIS_fnc_selectRandom;
 		_extra = _objects deleteAt 0;
+		if(_addsafezone)then{_objects pushBack ["ProtectionZone_Invisible_F",[0,0,0],0];};
 		_randir = _randir + _extra;
 		//creating trader
 		_pos0 = [(_coords select 0),(_coords select 1),0];
