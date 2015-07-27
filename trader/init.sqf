@@ -287,7 +287,7 @@ if(isServer) then{
 		_unitdir = _objects deleteAt 0;
 		_unit setDir (_randir+_unitdir);
 		_unit setUnitAbility 0.60000002;
-		_unit allowDammage false; _unit disableAI "FSM"; _unit disableAI "MOVE"; _unit disableAI "AUTOTARGET"; _unit disableAI "TARGET"; _unit setBehaviour "CARELESS"; _unit forceSpeed 0;_unit enableSimulation false;
+		_unit allowDammage false; _unit disableAI "FSM"; _unit disableAI "MOVE"; _unit disableAI "AUTOTARGET"; _unit disableAI "TARGET"; _unit setBehaviour "CARELESS"; _unit forceSpeed 0;_unit enableSimulationGlobal false;
 		_unit switchMove "AmovPercMstpSrasWrflDnon_AmovPercMstpSnonWnonDnon";
 		_unit setCaptive true;
 		_obj = createVehicle ["Land_ClutterCutter_large_F", _pos0, [], 0, "CAN_COLLIDE"];
@@ -300,7 +300,7 @@ if(isServer) then{
 			_obj setDir _Dir;
 			_obj setPos _pos;
 			_obj allowDammage false;
-			_obj enableSimulation false;
+			_obj enableSimulationGlobal false;
 			_obj setVariable ["R3F_LOG_disabled", true, true];
 			switch (_x select 0) do {
 				case "Land_Ammobox_rounds_F":{clearBackpackCargoGlobal _obj;clearItemCargoGlobal _obj;clearMagazineCargoGlobal _obj;clearWeaponCargoGlobal _obj;};
@@ -336,7 +336,7 @@ if(isServer) then{
 			_unit setPosATL _pos;
 		};
 		_unit setUnitAbility 0.60000002;
-		_unit allowDammage false; _unit disableAI "FSM"; _unit disableAI "MOVE"; _unit disableAI "AUTOTARGET"; _unit disableAI "TARGET"; _unit setBehaviour "CARELESS"; _unit forceSpeed 0;_unit enableSimulation false;
+		_unit allowDammage false; _unit disableAI "FSM"; _unit disableAI "MOVE"; _unit disableAI "AUTOTARGET"; _unit disableAI "TARGET"; _unit setBehaviour "CARELESS"; _unit forceSpeed 0;_unit enableSimulationGlobal false;
 		_unit switchMove "AmovPercMstpSrasWrflDnon_AmovPercMstpSnonWnonDnon";
 		_unit setCaptive true;
 		_units pushBack _unit;
@@ -362,7 +362,7 @@ if(isServer) then{
 					_obj setPosATL _objpos;
 				};
 				_obj allowDammage false;
-				_obj enableSimulation false;
+				_obj enableSimulationGlobal false;
 				_obj setVariable ["R3F_LOG_disabled", true, true];
 			}forEach _objs;
 		};

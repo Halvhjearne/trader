@@ -19,8 +19,14 @@ switch(_type)do{
 		_return = 0;
 		{
 			_obj = _x select 9;
-			
-			if((owner _obj) isEqualTo (owner _player))then{
+			_isPod = _obj isKindOf "Pod_Heli_Transport_04_base_F";
+			if((owner _obj) isEqualTo (owner _player) || _isPod)then{
+					_puid = getPlayerUID _player;
+					_plyrGroup = _player getVariable["GROUP",""];
+					_podowner = _obj getVariable ["HALV_PODOWNER","000"];
+					if(_isPod && !(_podowner in [_plyrGroup,_puid]))exitWith{
+						_message = _message + format[" || %1 Not your pod (claim to sell)",_x select 4];
+					};
 		//damage price reductions, the price is divded by this number
 				_damagepricereduction = switch(true)do{
 							//damaged over 90%
@@ -125,7 +131,10 @@ switch(_type)do{
 		_veh call EPOCH_server_save_vehicle;
 		_veh call EPOCH_server_vehicleInit;
 		_veh call HS_weaponsrestriction;
-
+		_isPod = _veh isKindOf "Pod_Heli_Transport_04_base_F";
+		if(_isPod)then{
+			_veh setVariable ["HALV_PODOWNER",_lockOwner,true];
+		};
 		_itemWorth = (_arr select 1);
 		_itemTax = (_arr select 2);
 		_tax = _itemWorth * (EPOCH_taxRate + _itemTax);
@@ -174,8 +183,17 @@ switch(_type)do{
 		};
 		_veh call EPOCH_server_vehicleInit;
 		_veh call HS_weaponsrestriction;
+		_isPod = _veh isKindOf "Pod_Heli_Transport_04_base_F";
+		if(_isPod)then{
+			_lockOwner=getPlayerUID _player;
+			_plyrGroup=_player getVariable["GROUP",""];
+			if !(_plyrGroup isEqualTo "")then{
+				_lockOwner=_plyrGroup;
+			};
+			_veh setVariable ["HALV_PODOWNER",_lockOwner,true];
+		};
 		_veh addEventHandler ["GetIn",{
-			HalvPV_player_message = ["titleText", ["[Warning]:\nnThis vehicle is a rental and will disappear on server restart!", "PLAIN DOWN"]];
+			HalvPV_player_message = ["titleText", ["[Warning]:\nThis vehicle is a rental and will disappear on server restart!", "PLAIN DOWN"]];
 			owner(_this select 2) publicVariableClient "HalvPV_player_message";
 		}];
 		_veh setVariable["HSHALFPRICE",1,true];
